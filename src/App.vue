@@ -4,47 +4,20 @@
     <div class="window">
       <div class="window-header">
         <h1 class="title">Mix and Match</h1>
+        {{ disableCerts }}
         <div class="instructions">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis, perferendis.</div>
       </div>
       <div class="window-body">
-        <div class="box">
-          <input type="checkbox" id="HCI" value="HCI" v-model="checkedCerts">
-          <label for="HCI">HCI/UX</label>
-        </div>
-        <div class="box">
-          <input type="checkbox" id="info" value="info" v-model="checkedCerts">
-          <label for="info">Information Systems Certificate</label>
-        </div>
-        <div class="box">
-          <input type="checkbox" id="csf" value="csf" v-model="checkedCerts">
-          <label for="csf">Computer Science Foundations</label>
-        </div>
-        <div class="box">
-          <input type="checkbox" id="technology" value="technology" v-model="checkedCerts">
-          <label for="technology">Technology Leadership*</label>
-        </div>
-        <div class="box">
-          <input type="checkbox" id="frontend" value="frontend" v-model="checkedCerts">
-          <label for="frontend">Frontend Development*</label>
-        </div>
-        <div class="box">
-          <input type="checkbox" id="cybersecurity" value="cybersecurity" v-model="checkedCerts">
-          <label for="cybersecurity">Cybersecurity*</label>
-        </div>
-        <div class="box">
-          <input type="checkbox" id="software" value="SoftwareArch" v-model="checkedCerts">
-          <label for="software">Software Architecture</label>
-        </div>
-        <div class="box">
-          <input type="checkbox" id="random" value="random" v-model="checkedCerts">
-          <label for="random">Random Certificate</label>
+        <div class="box" v-for="(cert,idx) in allPossibleCerts" :key="idx">
+          <input type="checkbox" :id="cert.name" :value="cert.name" v-model="checkedCerts">
+          <label :for="cert.name">{{ cert.name }}</label>
         </div>
       </div>
       <div class="window-footer">
         <div class="certificates">
           Currently Selected Certificates
           <ul id="certificates-list">
-            <li v-for="cert in checkedCerts" :key="cert">
+            <li v-for="cert in checkedCerts" :key="cert.name">
               {{ cert }}
             </li>
           </ul>
@@ -74,13 +47,53 @@ export default {
   },
   data() { 
     return {
+      allPossibleCerts: [
+        { name:"HCI/UX" },
+        { name: "Information Systems"},
+        { name: "Computer Science Foundations"},
+        { name: "Technology Leadership"},
+        { name: "Frontend Development"},
+        { name: "Cybersecurity" },
+        { name: "Software Architecture"},
+        { name: "Foundations of Data Science"},
+        { name: "Artifical Intelligence / Machine Learning"},
+        { name: "Advanced Computer Science"},
+
+      ],
       checkedCerts: []
+    }
+  },
+  methods: {
+    loopThroughAllCerts: function() {
+      console.log("I will go ahead and disable all certs that aren't necessary");
+    }
+  },
+  computed: {
+    numOfSelectedCerts: function() {
+      return this.checkedCerts.length;
+    },
+    selectedThree: function() {
+      return this.numOfSelectedCerts === 3;
+    },
+    disableCerts: function() {
+      if(this.selectedThree) {
+        var message = "You've selected three certificates already";
+        // for every checkbox in all possible checkboxes
+        // if (checkbox not in selectedCerts) {
+        // disable it
+        this.loopThroughAllCerts();
+        return message;
+      } else {
+        return null;
+      }
     }
   }
 }
 </script>
 
 <style lang="scss">
+$light-grey: #b7b7b5;
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -104,7 +117,7 @@ export default {
   display: grid;
   grid-template-rows: auto 1fr auto;
   background-color: #fff;
-  border: 1px solid black;
+  border: 1px solid $light-grey;
   .window-header {
     text-align: center;
   }
@@ -117,7 +130,7 @@ export default {
   }
 
   .window-footer {
-    border-top: 1px solid red;
+    border-top: 1px solid $light-grey;
     padding: 3% 8%;
     display: flex;
     flex-direction: row;
