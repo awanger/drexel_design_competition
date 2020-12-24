@@ -9,7 +9,7 @@
       <div class="window-body">
         <div class="box">
           <input type="checkbox" id="HCI" value="HCI" v-model="checkedCerts">
-          <label for="HCI">HCI Certificate</label>
+          <label for="HCI">HCI/UX</label>
         </div>
         <div class="box">
           <input type="checkbox" id="info" value="info" v-model="checkedCerts">
@@ -44,7 +44,9 @@
         <div class="certificates">
           Currently Selected Certificates
           <ul id="certificates-list">
-            Temporary output {{ checkedCerts }}
+            <li v-for="cert in checkedCerts" :key="cert">
+              {{ cert }}
+            </li>
           </ul>
         </div>
         <div class="masters">
