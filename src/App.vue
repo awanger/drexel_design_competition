@@ -75,7 +75,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -91,5 +91,36 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.window {
+  width: 800px;
+  height:700px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: #fff;
+  border: 1px solid black;
+  .window-header {
+    text-align: center;
+  }
+
+  .window-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 4%;
+    user-select: none;
+  }
+
+  .window-footer {
+    border-top: 1px solid red;
+    padding: 3% 8%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+// temporary class
+.box {
+  border: 1px solid;
 }
 </style>
