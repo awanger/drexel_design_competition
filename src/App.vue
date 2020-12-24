@@ -8,35 +8,35 @@
       </div>
       <div class="window-body">
         <div class="box">
-          <input type="checkbox" id="HCI">
+          <input type="checkbox" id="HCI" value="HCI" v-model="checkedCerts">
           <label for="HCI">HCI Certificate</label>
         </div>
         <div class="box">
-          <input type="checkbox" id="info">
+          <input type="checkbox" id="info" value="info" v-model="checkedCerts">
           <label for="info">Information Systems Certificate</label>
         </div>
         <div class="box">
-          <input type="checkbox" id="csf">
+          <input type="checkbox" id="csf" value="csf" v-model="checkedCerts">
           <label for="csf">Computer Science Foundations</label>
         </div>
         <div class="box">
-          <input type="checkbox" id="technology">
+          <input type="checkbox" id="technology" value="technology" v-model="checkedCerts">
           <label for="technology">Technology Leadership*</label>
         </div>
         <div class="box">
-          <input type="checkbox" id="frontend">
+          <input type="checkbox" id="frontend" value="frontend" v-model="checkedCerts">
           <label for="frontend">Frontend Development*</label>
         </div>
         <div class="box">
-          <input type="checkbox" id="cybersecurity">
+          <input type="checkbox" id="cybersecurity" value="cybersecurity" v-model="checkedCerts">
           <label for="cybersecurity">Cybersecurity*</label>
         </div>
         <div class="box">
-          <input type="checkbox" id="software">
+          <input type="checkbox" id="software" value="SoftwareArch" v-model="checkedCerts">
           <label for="software">Software Architecture</label>
         </div>
         <div class="box">
-          <input type="checkbox" id="random">
+          <input type="checkbox" id="random" value="random" v-model="checkedCerts">
           <label for="random">Random Certificate</label>
         </div>
       </div>
@@ -44,9 +44,7 @@
         <div class="certificates">
           Currently Selected Certificates
           <ul id="certificates-list">
-            <li>Certificate 1</li>
-            <li>Certificate 2</li>
-            <li>Certificate 3</li>
+            Temporary output {{ checkedCerts }}
           </ul>
         </div>
         <div class="masters">
@@ -71,6 +69,11 @@ export default {
   name: 'App',
   components: {
     // HelloWorld
+  },
+  data() { 
+    return {
+      checkedCerts: []
+    }
   }
 }
 </script>
