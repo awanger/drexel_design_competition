@@ -17,19 +17,19 @@
       </div>
       <div class="window-footer">
         <div class="certificates">
-          Currently Selected Certificates
-          <ul id="certificates-list">
+          <h3>Currently Selected Certificates</h3>
+          <ol id="certificates-list">
             <li v-for="cert in checkedCerts" :key="cert.name">
               {{ cert }}
             </li>
-          </ul>
+          </ol>
         </div>
         <div class="masters">
-          Possible Master's Degrees
-          <ul id="masters-list">
+          <h3>Possible Master's Degrees</h3>
+          <div class="placeholder" v-if="numOfSelectedCerts === 0">Please select 3 certificates to see your results</div>
+          <ul v-if="selectedThree" id="masters-list">
             <li>Masters 1</li>
             <li>Masters 2</li>
-            <li>Masters 3</li>
           </ul>
         </div>
       </div>
@@ -145,6 +145,10 @@ $light-grey: #b7b7b5;
 // temporary class
 .cell {
   border: 1px solid;
-  
+
+}
+
+.placeholder {
+  background-color: $light-grey;
 }
 </style>
