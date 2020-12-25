@@ -84,15 +84,16 @@ export default {
 
 <style lang="scss">
 $light-grey: #b7b7b5;
-$very-light-grey: #f2f2f2;
+$blue: #232d38;
+
+$yellow: #ffc600;
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: $blue;
 }
 
 .container {
@@ -107,9 +108,9 @@ $very-light-grey: #f2f2f2;
   width: 1100px;
   height:700px;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr auto; // pancake stack layout
   background-color: #fff;
-  border: 1px solid $light-grey;
+  border: 2px solid $light-grey;
   .window-header {
     text-align: center;
   }
@@ -117,6 +118,7 @@ $very-light-grey: #f2f2f2;
   .window-body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
     margin: 4%;
     user-select: none;
   }
@@ -131,19 +133,23 @@ $very-light-grey: #f2f2f2;
 }
 
 .disabled {
-  color: $light-grey;
+  opacity: 0.3;
   pointer-events: none;
 }
 
 // temporary class
 .cell {
-  border: 1px solid;
+  border: 1px solid $light-grey;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
-    background-color: $very-light-grey;
+    background-color: lighten($light-grey, 24%);
     cursor: pointer;
   }
   &.selected {
-    background-color: skyblue;
+    background-color: $yellow;
   }
 }
 
@@ -153,9 +159,5 @@ $very-light-grey: #f2f2f2;
   left: -100vw;
   width: 0;
   height: 0;
-}
-
-.placeholder {
-  // background-color: $light-grey;
 }
 </style>
