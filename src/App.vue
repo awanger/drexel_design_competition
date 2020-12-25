@@ -26,7 +26,7 @@
         </div>
         <div class="masters">
           <h3>Possible Master's Degrees</h3>
-          <div class="placeholder" v-if="numOfSelectedCerts < 3">Please select 3 certificates to see your results</div>
+          <div class="placeholder" v-if="numOfSelectedCerts < 3">Please select <b>{{ 3 - numOfSelectedCerts }}</b> more certificates to see results</div> <!-- will need to pluralize -->
           <ul v-if="selectedThree" id="masters-list">
             <li>Masters 1</li>
             <li>Masters 2</li>
@@ -112,7 +112,7 @@ $light-grey: #b7b7b5;
 }
 
 .window {
-  width: 800px;
+  width: 1100px;
   height:700px;
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -149,6 +149,6 @@ $light-grey: #b7b7b5;
 }
 
 .placeholder {
-  background-color: $light-grey;
+  // background-color: $light-grey;
 }
 </style>
