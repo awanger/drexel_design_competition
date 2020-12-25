@@ -4,13 +4,15 @@
     <div class="window">
       <div class="window-header">
         <h1 class="title">Mix and Match</h1>
-        {{ disableCerts }}
         <div class="instructions">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis, perferendis.</div>
       </div>
       <div class="window-body">
-        <div class="box" v-for="(cert,idx) in allPossibleCerts" :key="idx">
-          <input type="checkbox" :id="cert.name" :value="cert.name" v-model="checkedCerts">
-          <label :for="cert.name">{{ cert.name }}</label>
+        <div class="cell" v-for="(cert,idx) in allPossibleCerts" :key="idx">
+          <input type="checkbox" 
+                 :id="cert.name" 
+                 :value="cert.name" 
+                 v-model="checkedCerts" :disabled="selectedThree && !checkIfSelectedAlready(cert.name)">
+          <label :class="{ disable: selectedThree && !checkIfSelectedAlready(cert.name) }" :for="cert.name">{{ cert.name }}</label>
         </div>
       </div>
       <div class="window-footer">
@@ -58,14 +60,13 @@ export default {
         { name: "Foundations of Data Science"},
         { name: "Artifical Intelligence / Machine Learning"},
         { name: "Advanced Computer Science"},
-
       ],
       checkedCerts: []
     }
   },
   methods: {
-    loopThroughAllCerts: function() {
-      console.log("I will go ahead and disable all certs that aren't necessary");
+    checkIfSelectedAlready: function(cert) {
+      return this.checkedCerts.includes(cert);
     }
   },
   computed: {
@@ -75,18 +76,17 @@ export default {
     selectedThree: function() {
       return this.numOfSelectedCerts === 3;
     },
-    disableCerts: function() {
-      if(this.selectedThree) {
-        var message = "You've selected three certificates already";
-        // for every checkbox in all possible checkboxes
-        // if (checkbox not in selectedCerts) {
-        // disable it
-        this.loopThroughAllCerts();
-        return message;
-      } else {
-        return null;
-      }
-    }
+    // disableCert: function(cert) {
+    //   if(this.selectedThree && this.checkIfSelectedAlready(cert)) {
+    //     var message = "You've selected three certificates already";
+    //     // for every checkbox in all possible checkboxes
+    //     // if (checkbox not in selectedCerts) {
+    //     // disable it
+    //     return message;
+    //   } else {
+    //     return "you haven't seleted three yet";
+    //   }
+    // }
   }
 }
 </script>
@@ -137,8 +137,14 @@ $light-grey: #b7b7b5;
     justify-content: space-between;
   }
 }
+
+.disable {
+  color: $light-grey;
+}
+
 // temporary class
-.box {
+.cell {
   border: 1px solid;
+  
 }
 </style>
