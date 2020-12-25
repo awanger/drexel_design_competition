@@ -17,7 +17,7 @@
       </div>
       <div class="window-footer">
         <div class="certificates">
-          <h3>Currently Selected Certificates</h3>
+          <h3>Currently Selected Certificates ({{ numOfSelectedCerts }})</h3>
           <ol id="certificates-list">
             <li v-for="cert in checkedCerts" :key="cert.name">
               {{ cert }}
