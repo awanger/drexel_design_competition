@@ -84,6 +84,7 @@ export default {
 
 <style lang="scss">
 $light-grey: #b7b7b5;
+$very-light-grey: #f2f2f2;
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -137,7 +138,7 @@ $light-grey: #b7b7b5;
 .cell {
   border: 1px solid;
   &:hover {
-    background-color: $light-grey;
+    background-color: $very-light-grey;
     cursor: pointer;
   }
   &.selected {
