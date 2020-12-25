@@ -7,13 +7,15 @@
         <div class="instructions">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis, perferendis.</div>
       </div>
       <div class="window-body">
-        <div class="cell" v-for="(cert,idx) in allPossibleCerts" :key="idx">
-          <input type="checkbox" 
-                 :id="cert.name" 
+        <label class="cell"
+               v-for="(cert,idx) in allPossibleCerts" :key="idx"
+               :class="{ disable: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
+          <input type="checkbox" class="visually-hidden"
+                 :id="cert.name"
                  :value="cert.name" 
-                 v-model="checkedCerts" :disabled="selectedThree && !checkIfSelectedAlready(cert.name)">
-          <label :class="{ disable: selectedThree && !checkIfSelectedAlready(cert.name) }" :for="cert.name">{{ cert.name }}</label>
-        </div>
+                 v-model="checkedCerts" :disabled="selectedThree && !checkIfSelected(cert.name)">
+          <h4 :for="cert.name">{{ cert.name }}</h4>
+        </label>
       </div>
       <div class="window-footer">
         <div class="certificates">
@@ -65,7 +67,7 @@ export default {
     }
   },
   methods: {
-    checkIfSelectedAlready: function(cert) {
+    checkIfSelected: function(cert) {
       return this.checkedCerts.includes(cert);
     }
   },
@@ -75,18 +77,7 @@ export default {
     },
     selectedThree: function() {
       return this.numOfSelectedCerts === 3;
-    },
-    // disableCert: function(cert) {
-    //   if(this.selectedThree && this.checkIfSelectedAlready(cert)) {
-    //     var message = "You've selected three certificates already";
-    //     // for every checkbox in all possible checkboxes
-    //     // if (checkbox not in selectedCerts) {
-    //     // disable it
-    //     return message;
-    //   } else {
-    //     return "you haven't seleted three yet";
-    //   }
-    // }
+    }
   }
 }
 </script>
@@ -145,7 +136,21 @@ $light-grey: #b7b7b5;
 // temporary class
 .cell {
   border: 1px solid;
+  &:hover {
+    background-color: $light-grey;
+    cursor: pointer;
+  }
+  &.selected {
+    background-color: skyblue;
+  }
+}
 
+.visually-hidden {
+  appearance: none;
+  position: absolute; 
+  left: -100vw;
+  width: 0;
+  height: 0;
 }
 
 .placeholder {
