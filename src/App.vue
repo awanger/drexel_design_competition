@@ -26,7 +26,7 @@
         </div>
         <div class="masters">
           <h3>Possible Master's Degrees</h3>
-          <div class="placeholder" v-if="numOfSelectedCerts === 0">Please select 3 certificates to see your results</div>
+          <div class="placeholder" v-if="numOfSelectedCerts < 3">Please select 3 certificates to see your results</div>
           <ul v-if="selectedThree" id="masters-list">
             <li>Masters 1</li>
             <li>Masters 2</li>
