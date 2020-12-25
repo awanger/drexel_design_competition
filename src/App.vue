@@ -13,7 +13,7 @@
           <input type="checkbox" class="visually-hidden"
                  :id="cert.name"
                  :value="cert.name" 
-                 v-model="checkedCerts" :disabled="selectedThree && !checkIfSelected(cert.name)">
+                 v-model="checkedCerts">
           <h4 :for="cert.name">{{ cert.name }}</h4>
         </label>
       </div>
@@ -132,6 +132,7 @@ $very-light-grey: #f2f2f2;
 
 .disable {
   color: $light-grey;
+  pointer-events: none;
 }
 
 // temporary class
