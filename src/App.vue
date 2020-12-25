@@ -9,7 +9,7 @@
       <div class="window-body">
         <label class="cell"
                v-for="(cert,idx) in allPossibleCerts" :key="idx"
-               :class="{ disable: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
+               :class="{ disabled: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
           <input type="checkbox" class="visually-hidden"
                  :id="cert.name"
                  :value="cert.name" 
@@ -130,7 +130,7 @@ $very-light-grey: #f2f2f2;
   }
 }
 
-.disable {
+.disabled {
   color: $light-grey;
   pointer-events: none;
 }
