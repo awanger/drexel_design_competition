@@ -98,7 +98,7 @@ $yellow: #ffc600;
 .container {
   max-width: 100vw;
   height: 90vh;
-  padding: 3%;
+  padding: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,7 +108,7 @@ $yellow: #ffc600;
   width: 100%;
   height:100%;
   display: grid;
-  grid-template-rows: 1fr 8fr 3fr; // pancake stack layout
+  grid-template-rows: 1fr 6fr 3fr; // pancake stack layout
   background-color: #fff;
   border: 2px solid $light-grey;
   border-radius: 10px;
@@ -121,13 +121,13 @@ $yellow: #ffc600;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
-    margin: 4%;
+    margin: 2%;
     user-select: none;
   }
 
   .window-footer {
     border-top: 1px solid $light-grey;
-    padding: 2% 8%;
+    padding: 1% 8%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -151,10 +151,10 @@ $yellow: #ffc600;
     background: $blue;
     color: white;
     border-radius: 3px 0px 0px 3px; // top-left top-right bottom-right bottom-left
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 2px 5px;
     position: absolute;
-    top: 6px;
+    top: 2px;
     right: 0px;
   }
 
