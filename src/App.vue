@@ -85,14 +85,13 @@ export default {
 <style lang="scss">
 $light-grey: #b7b7b5;
 $blue: #232d38;
-
 $yellow: #ffc600;
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  // text-align: center;
   color: $blue;
 }
 
@@ -108,9 +107,11 @@ $yellow: #ffc600;
   width: 1100px;
   height:700px;
   display: grid;
-  grid-template-rows: auto 1fr auto; // pancake stack layout
+  grid-template-rows: 1fr 5fr 4fr; // pancake stack layout
   background-color: #fff;
   border: 2px solid $light-grey;
+  border-radius: 10px;
+  padding-top: 10px;
   .window-header {
     text-align: center;
   }
@@ -125,7 +126,7 @@ $yellow: #ffc600;
 
   .window-footer {
     border-top: 1px solid $light-grey;
-    padding: 3% 8%;
+    padding: 2% 8%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
