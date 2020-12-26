@@ -10,6 +10,9 @@
         <label class="cell"
                v-for="(cert,idx) in allPossibleCerts" :key="idx"
                :class="{ disabled: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
+          <div v-if="cert.requiresCompsci" class="ribbon">
+            Computer Science background required
+          </div>
           <input type="checkbox" class="visually-hidden"
                  :id="cert.name"
                  :value="cert.name" 
@@ -28,7 +31,7 @@
         </div>
         <div class="masters">
           <h3>Possible Master's Degrees</h3>
-          <div class="placeholder" v-if="numOfSelectedCerts < 3">Please select <b>{{ 3 - numOfSelectedCerts }}</b> more certificates to see results</div> <!-- will need to pluralize -->
+          <div class="placeholder" v-if="numOfSelectedCerts < 3">Please select <b>{{ 3 - numOfSelectedCerts }}</b> more certificates to see your results</div> <!-- will need to pluralize -->
           <ul v-if="selectedThree" id="masters-list">
             <li>Masters 1</li>
             <li>Masters 2</li>
@@ -37,13 +40,10 @@
       </div>
     </div>
   </div>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
   components: {
@@ -52,16 +52,16 @@ export default {
   data() { 
     return {
       allPossibleCerts: [
-        { name:"HCI/UX" },
-        { name: "Information Systems"},
-        { name: "Computer Science Foundations"},
-        { name: "Technology Leadership"},
-        { name: "Frontend Development"},
-        { name: "Cybersecurity" },
-        { name: "Software Architecture"},
-        { name: "Foundations of Data Science"},
-        { name: "Artifical Intelligence / Machine Learning"},
-        { name: "Advanced Computer Science"},
+        { name:"HCI/UX", requiresCompsci: false },
+        { name: "Information Systems", requiresCompsci: false},
+        { name: "Computer Science Foundations", requiresCompsci: false },
+        { name: "Technology Leadership", requiresCompsci: false },
+        { name: "Frontend Development", requiresCompsci: true },
+        { name: "Cybersecurity", requiresCompsci: true  },
+        { name: "Software Architecture", requiresCompsci: true },
+        { name: "Foundations of Data Science", requiresCompsci: true},
+        { name: "Artifical Intelligence / Machine Learning", requiresCompsci: true},
+        { name: "Advanced Computer Science", requiresCompsci: true},
       ],
       checkedCerts: []
     }
@@ -98,16 +98,17 @@ $yellow: #ffc600;
 .container {
   max-width: 100vw;
   height: 90vh;
+  padding: 3%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .window {
-  width: 1100px;
-  height:700px;
+  width: 100%;
+  height:100%;
   display: grid;
-  grid-template-rows: 1fr 5fr 4fr; // pancake stack layout
+  grid-template-rows: 1fr 8fr 3fr; // pancake stack layout
   background-color: #fff;
   border: 2px solid $light-grey;
   border-radius: 10px;
@@ -138,13 +139,25 @@ $yellow: #ffc600;
   pointer-events: none;
 }
 
-// temporary class
 .cell {
   border: 1px solid $light-grey;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  .ribbon {
+    background: $blue;
+    color: white;
+    border-radius: 3px 0px 0px 3px; // top-left top-right bottom-right bottom-left
+    font-size: 0.8rem;
+    padding: 2px 5px;
+    position: absolute;
+    top: 6px;
+    right: 0px;
+  }
+
   &:hover {
     background-color: lighten($light-grey, 24%);
     cursor: pointer;
