@@ -29,12 +29,12 @@
             </li>
           </ol>
         </div>
-        <div class="masters">
+        <div class="masters-list">
           <h3>Possible Master's Degrees</h3>
           <div class="placeholder" v-if="numOfSelectedCerts < 3">Please select <b>{{ 3 - numOfSelectedCerts }}</b> more certificates to see your results</div> <!-- will need to pluralize -->
-          <ul v-if="selectedThree" id="masters-list">
-            <li>Masters 1</li>
-            <li>Masters 2</li>
+          <ul v-if="selectedThree">
+            <li><input type="checkbox" id="masters1"> <label for="masters1">Masters 1</label></li>
+            <li><input type="checkbox" id="masters2"> <label for="masters2">Masters 2</label></li>
           </ul>
         </div>
       </div>
@@ -131,6 +131,14 @@ $yellow: #ffc600;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    .certificates-list {
+
+    }
+
+    .masters-list {
+      width: 30%;
+    }
+
   }
 }
 
