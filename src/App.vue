@@ -11,9 +11,9 @@
           <label class="cell"
                 v-for="(cert,idx) in allPossibleCerts" :key="idx"
                 :class="{ disabled: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
-            <div v-if="cert.requiresCompsci" class="ribbon">
+            <!-- <div v-if="cert.requiresCompsci">
               Computer Science background required
-            </div>
+            </div> -->
             <input type="checkbox" class="visually-hidden"
                   :id="cert.name"
                   :value="cert.name" 
@@ -172,16 +172,16 @@ $yellow: #ffc600;
   width: 250px;
   height: 90px;
 
-  .ribbon {
-    background: $blue;
-    color: white;
-    border-radius: 3px 0px 0px 3px; // top-left top-right bottom-right bottom-left
-    font-size: 0.7rem;
-    padding: 2px 5px;
-    position: absolute;
-    top: 2px;
-    right: 0px;
-  }
+  // .ribbon {
+  //   background: $blue;
+  //   color: white;
+  //   border-radius: 3px 0px 0px 3px; // top-left top-right bottom-right bottom-left
+  //   font-size: 0.7rem;
+  //   padding: 2px 5px;
+  //   position: absolute;
+  //   top: 2px;
+  //   right: 0px;
+  // }
   
 
   &:hover {
