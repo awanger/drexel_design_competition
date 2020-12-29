@@ -23,20 +23,20 @@
         </div>
         </div>
         <div class="window-sidebar">
-          <div class="certificates-list">
+          <div class="certificates-window">
             <h4>Currently Selected Certificates ({{ numOfSelectedCerts }})</h4>
-            <ol id="certificates-list">
-              <li v-for="cert in checkedCerts" :key="cert.name">
-                {{ cert }}
-              </li>
+            <ol>
+              <li class="placeholder">{{ checkedCerts[0] }}</li>
+              <li class="placeholder">{{ checkedCerts[1] }}</li>
+              <li class="placeholder">{{ checkedCerts[2] }}</li>
             </ol>
           </div>
           <div class="masters-list">
             <h4>Possible Master's Degrees</h4>
             <!-- <div class="placeholder" v-if="numOfSelectedCerts < 3">Please select <b>{{ 3 - numOfSelectedCerts }}</b> more certificates to see your results</div> will need to pluralize -->
             <ul v-if="selectedThree">
-              <li><input type="checkbox" id="masters1"> <label for="masters1">Masters of Computer Science</label></li>
-              <li><input type="checkbox" id="masters2"> <label for="masters2">Masters of Data Science</label></li>
+              <li><input type="checkbox" id="masters1"><label for="masters1">Masters of Computer Science</label></li>
+              <li><input type="checkbox" id="masters2"><label for="masters2">Masters of Data Science</label></li>
             </ul>
           </div>
         </div>
@@ -141,16 +141,22 @@ $yellow: #ffc600;
     padding: 4%;
     display: grid;
     grid-template-rows: 1fr 2fr;
-    // justify-content: space-between;
-    .certificates-list {
-
-    }
-
-    .masters-list {
-
-    }
-
   }
+}
+
+
+
+.certificates-window {
+  .placeholder {
+    width: 100%;
+    height: 35px;
+    border: 2px solid $light-grey;
+    margin-bottom: 1rem;
+  }
+}
+
+.masters-list {
+
 }
 
 .disabled {
