@@ -4,20 +4,27 @@
       <h1 class="title">Customize Your Master's Degree</h1>
       <div class="window">
         <div class="window-body">
-          <label class="card"
+          <div class="card"
                 v-for="(cert,idx) in allPossibleCerts" :key="idx"
                 :class="{ disabled: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
-            <input type="checkbox" class="visually-hidden"
+
+            <div class="overlay">
+              <div class="btn-container">
+                <div class="btn">View Details</div>
+                <label class="btn" :for="cert.name">
+                  <span v-if="!checkIfSelected(cert.name)">Add to Plan</span>
+                  <span v-else class="added">Added to Plan</span>
+                  <input type="checkbox" class="visually-hidden"
                   :id="cert.name"
                   :value="cert.name" 
                   v-model="checkedCerts">
-            <div class="overlay">
-              Hello World
+                </label>
+              </div>
             </div>
             <footer class="card-footer">
               <h4 :for="cert.name">{{ cert.name }}</h4>
             </footer>
-          </label>
+          </div>
         </div>
         <div class="window-sidebar">
           <div class="certificates-window">
@@ -102,6 +109,10 @@ $yellow: #ffc600;
   padding: 2%;
 }
 
+.title {
+  text-align: center;
+}
+
 .window {
   width: 100%;
   height:100%;
@@ -126,10 +137,6 @@ $yellow: #ffc600;
     padding-top: 10%;
     padding-left: 4%;
   }
-}
-
-.title {
-  text-align: center;
 }
 
 .certificates-window {
@@ -158,9 +165,15 @@ $yellow: #ffc600;
   border-radius: 5px;
   position: relative;
   aspect-ratio: 1/1; // only works in Chrome Canary
+  height: 250px;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 
   .card-footer {
     position: absolute;
+    background-color: white;
+    z-index: 3;
     width: 100%;
     text-align: center;
     bottom: 0;
@@ -172,11 +185,12 @@ $yellow: #ffc600;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: skyblue;
-    opacity: 0;
+    background-color: $yellow;
+    opacity: 0; // temporarily make this 1
+    transition: 0.3s;
+
     &:hover {
       opacity: 1;
-      cursor: pointer;
     }
   }
 
@@ -185,6 +199,32 @@ $yellow: #ffc600;
     background-color: $yellow;
   }
 }
+
+.btn-container {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 75%; // depends on the size of the 
+
+  .btn {
+    padding: 0.35em 1.2em;
+    border: 0.1em solid $blue;
+    border-radius: 1em;
+    color:$blue;
+    text-decoration:none;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 50px;
+
+  }
+}
+
+
+
 
 .visually-hidden {
   appearance: none;
