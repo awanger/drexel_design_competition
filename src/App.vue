@@ -4,6 +4,7 @@
       <h1 class="title">Customize Your Master's Degree</h1>
       <div class="window">
         <div class="window-body">
+          <input class="search-bar" type="text" placeholder="Search for a certificate..." name="search">
           <div class="card"
                 v-for="(cert,idx) in allPossibleCerts" :key="idx"
                 :class="{ disabled: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
@@ -12,7 +13,7 @@
                 <div class="btn">View Details</div>
                 <label class="btn" :for="cert.name">
                   <span v-if="!checkIfSelected(cert.name)">Add to Plan</span>
-                  <span v-else class="added">Added to Plan</span>
+                  <span v-else class="added">Remove from Plan</span>
                   <input type="checkbox" class="visually-hidden" :id="cert.name" :value="cert.name" v-model="checkedCerts">
                 </label>
               </div>
@@ -91,6 +92,7 @@ export default {
 $light-grey: #b7b7b5;
 $blue: #232d38;
 $yellow: #ffc600;
+$overlay-color: lighten(#FFFDFD, 10%);
 
 #app {
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -115,7 +117,7 @@ $yellow: #ffc600;
   width: 100%;
   height:100%;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 4fr 2fr;
   background-color: #fff;
   // border: 2px solid $light-grey;
   .window-header {
@@ -131,11 +133,18 @@ $yellow: #ffc600;
   }
 
   .window-sidebar {
-    // border: 2px solid red;
-    padding-top: 10%;
-    padding-left: 4%;
+
   }
 }
+
+
+.search-bar {
+  grid-column: 1/4;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid $light-grey;
+}
+
 
 .certificates-window {
   border: 2px solid $light-grey;
@@ -162,7 +171,7 @@ $yellow: #ffc600;
   border: 1px solid $light-grey;
   position: relative;
   aspect-ratio: 1/1; // only works in Chrome Canary
-  height: 250px;
+  height: 280px;
 
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -182,7 +191,7 @@ $yellow: #ffc600;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: $yellow;
+    background-color: $overlay-color;
     opacity: 0; // temporarily make this 1
     transition: 0.3s;
 
