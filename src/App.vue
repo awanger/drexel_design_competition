@@ -7,17 +7,13 @@
           <div class="card"
                 v-for="(cert,idx) in allPossibleCerts" :key="idx"
                 :class="{ disabled: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
-
             <div class="overlay">
               <div class="btn-container">
                 <div class="btn">View Details</div>
                 <label class="btn" :for="cert.name">
                   <span v-if="!checkIfSelected(cert.name)">Add to Plan</span>
                   <span v-else class="added">Added to Plan</span>
-                  <input type="checkbox" class="visually-hidden"
-                  :id="cert.name"
-                  :value="cert.name" 
-                  v-model="checkedCerts">
+                  <input type="checkbox" class="visually-hidden" :id="cert.name" :value="cert.name" v-model="checkedCerts">
                 </label>
               </div>
             </div>
@@ -97,7 +93,7 @@ $blue: #232d38;
 $yellow: #ffc600;
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $blue;
@@ -110,6 +106,8 @@ $yellow: #ffc600;
 }
 
 .title {
+  font-family: Futura;
+  font-size: 3em;
   text-align: center;
 }
 
@@ -162,7 +160,6 @@ $yellow: #ffc600;
 
 .card {
   border: 1px solid $light-grey;
-  border-radius: 5px;
   position: relative;
   aspect-ratio: 1/1; // only works in Chrome Canary
   height: 250px;
@@ -209,7 +206,6 @@ $yellow: #ffc600;
   .btn {
     padding: 0.35em 1.2em;
     border: 0.1em solid $blue;
-    border-radius: 1em;
     color:$blue;
     text-decoration:none;
     cursor: pointer;
@@ -222,9 +218,6 @@ $yellow: #ffc600;
 
   }
 }
-
-
-
 
 .visually-hidden {
   appearance: none;
