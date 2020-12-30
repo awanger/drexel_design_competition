@@ -1,12 +1,8 @@
 <template>
   <div id="app">
     <div class="container">
+      <h1 class="title">Customize Your Master's Degree</h1>
       <div class="window">
-        <div>
-          <div class="window-header">
-          <h1 class="title">Customize Your Master's Degree</h1>
-          <div class="instructions">Please select <b>3 certificates</b> to see the potential Master's programs that are available to you</div>
-        </div>
         <div class="window-body">
           <label class="cell"
                 v-for="(cert,idx) in allPossibleCerts" :key="idx"
@@ -21,23 +17,14 @@
             <h4 :for="cert.name">{{ cert.name }}</h4>
           </label>
         </div>
-        </div>
         <div class="window-sidebar">
           <div class="certificates-window">
-            <h4>Currently Selected Certificates ({{ numOfSelectedCerts }})</h4>
+            <h4>My Plan</h4>
             <ol>
               <li class="placeholder">{{ checkedCerts[0] }}</li>
               <li class="placeholder">{{ checkedCerts[1] }}</li>
               <li class="placeholder">{{ checkedCerts[2] }}</li>
             </ol>
-          </div>
-          <div class="masters-list">
-            <h4>Possible Master's Degrees</h4>
-            <!-- <div class="placeholder" v-if="numOfSelectedCerts < 3">Please select <b>{{ 3 - numOfSelectedCerts }}</b> more certificates to see your results</div> will need to pluralize -->
-            <ul v-if="selectedThree">
-              <li><input type="checkbox" id="masters1"><label for="masters1">Masters of Computer Science</label></li>
-              <li><input type="checkbox" id="masters2"><label for="masters2">Masters of Data Science</label></li>
-            </ul>
           </div>
         </div>
       </div>
@@ -104,17 +91,13 @@ $yellow: #ffc600;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // text-align: center;
   color: $blue;
 }
 
 .container {
   max-width: 100vw;
   height: 90vh;
-  padding: 1%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 2%;
 }
 
 .window {
@@ -123,7 +106,7 @@ $yellow: #ffc600;
   display: grid;
   grid-template-columns: 3fr 1fr;
   background-color: #fff;
-  border: 2px solid $light-grey;
+  // border: 2px solid $light-grey;
   .window-header {
     text-align: center;
   }
@@ -137,16 +120,20 @@ $yellow: #ffc600;
   }
 
   .window-sidebar {
-    border-left: 2px solid $light-grey;
-    padding: 4%;
-    display: grid;
-    grid-template-rows: 1fr 2fr;
+    // border: 2px solid red;
+    padding-top: 10%;
+    padding-left: 4%;
   }
 }
 
-
+.title {
+  text-align: center;
+}
 
 .certificates-window {
+  border: 2px solid $light-grey;
+  padding: 4%;
+
   .placeholder {
     width: 100%;
     height: 35px;
@@ -172,8 +159,7 @@ $yellow: #ffc600;
   align-items: center;
   position: relative;
 
-  width: 250px;
-  height: 90px;
+  aspect-ratio: 1/1;
 
   // .ribbon {
   //   background: $blue;
