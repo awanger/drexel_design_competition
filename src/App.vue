@@ -4,17 +4,19 @@
       <h1 class="title">Customize Your Master's Degree</h1>
       <div class="window">
         <div class="window-body">
-          <label class="cell"
+          <label class="card"
                 v-for="(cert,idx) in allPossibleCerts" :key="idx"
                 :class="{ disabled: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
-            <!-- <div v-if="cert.requiresCompsci">
-              Computer Science background required
-            </div> -->
             <input type="checkbox" class="visually-hidden"
                   :id="cert.name"
                   :value="cert.name" 
                   v-model="checkedCerts">
-            <h4 :for="cert.name">{{ cert.name }}</h4>
+            <div class="overlay">
+              Hello World
+            </div>
+            <footer class="card-footer">
+              <h4 :for="cert.name">{{ cert.name }}</h4>
+            </footer>
           </label>
         </div>
         <div class="window-sidebar">
@@ -151,32 +153,34 @@ $yellow: #ffc600;
   pointer-events: none;
 }
 
-.cell {
+.card {
   border: 1px solid $light-grey;
   border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  aspect-ratio: 1/1; // only works in Chrome Canary
 
-  aspect-ratio: 1/1;
-
-  // .ribbon {
-  //   background: $blue;
-  //   color: white;
-  //   border-radius: 3px 0px 0px 3px; // top-left top-right bottom-right bottom-left
-  //   font-size: 0.7rem;
-  //   padding: 2px 5px;
-  //   position: absolute;
-  //   top: 2px;
-  //   right: 0px;
-  // }
-  
-
-  &:hover {
-    background-color: lighten($light-grey, 24%);
-    cursor: pointer;
+  .card-footer {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    border-top: 1px solid $light-grey;
   }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: skyblue;
+    opacity: 0;
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+
+  
   &.selected {
     background-color: $yellow;
   }
