@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
+      <quick-preview></quick-preview>
       <h1 class="title">Customize Your Master's Degree</h1>
       <div class="window">
         <div class="window-body">
@@ -8,7 +9,8 @@
           <div class="card"
                 v-for="(cert,idx) in allPossibleCerts" :key="idx"
                 :class="{ disabled: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
-          
+
+            <img src="./assets/images/Cyber.jpeg" alt="graphic goes here">
             <div class="overlay">
               <div class="btn-container">
                 <div class="btn">View Details</div>
@@ -40,20 +42,21 @@
 </template>
 
 <script>
+import QuickPreview from './components/QuickPreview.vue';
+
+
 export default {
   name: 'App',
   components: {
-    // HelloWorld
+    QuickPreview
   },
   data() { 
     return {
       allPossibleCerts: [
-        { name:"HCI/UX", requiresCompsci: false },
+        { name:"HCI/UX", requiresCompsci: false, imgFile: 'ux.jpeg' },
         { name: "Information Systems", requiresCompsci: false},
-        { name: "Computer Science Foundations", requiresCompsci: false },
+        { name: "Comp Sci Foundations", requiresCompsci: false },
         { name: "Technology Leadership", requiresCompsci: false },
-        { name: "Example 1", requiresCompsci: true},
-        { name: "Example 2", requiresCompsci: true},
         { name: "Frontend Development", requiresCompsci: true },
         { name: "Cybersecurity", requiresCompsci: true  },
         { name: "Software Architecture", requiresCompsci: true },
@@ -61,17 +64,19 @@ export default {
         { name: "Artifical Intelligence", requiresCompsci: true},
         { name:"HCI/UX", requiresCompsci: false },
         { name: "Information Systems", requiresCompsci: false},
-        { name: "Computer Science Foundations", requiresCompsci: false },
+        { name: "Comp Sci Foundations", requiresCompsci: false },
         { name: "Technology Leadership", requiresCompsci: false },
-        { name: "Example 1", requiresCompsci: true},
-        { name: "Example 2", requiresCompsci: true},
         { name: "Frontend Development", requiresCompsci: true },
         { name: "Cybersecurity", requiresCompsci: true  },
         { name: "Software Architecture", requiresCompsci: true },
         { name: "Foundations of Data Science", requiresCompsci: true},
         { name: "Artifical Intelligence", requiresCompsci: true},
+        { name: "Foundations of Data Science", requiresCompsci: true},
+        { name: "Artifical Intelligence", requiresCompsci: true},
+        { name: "Foundations of Data Science", requiresCompsci: true},
+
       ],
-      checkedCerts: []
+      checkedCerts: [],
     }
   },
   methods: {
@@ -90,7 +95,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $light-grey: #b7b7b5;
 $blue: #232d38;
 $yellow: #ffc600;
@@ -140,6 +145,8 @@ $overlay-color: lighten(#FFFDFD, 10%);
 }
 
 
+
+
 .search-bar {
   grid-column: 1/4;
   padding: 10px;
@@ -180,6 +187,13 @@ $overlay-color: lighten(#FFFDFD, 10%);
   display: grid;
   grid-template-rows: 1fr 1fr;
 
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    width: 400px;
+  }
+
   .card-footer {
     position: absolute;
     background-color: white;
@@ -206,7 +220,7 @@ $overlay-color: lighten(#FFFDFD, 10%);
 
   
   &.selected {
-    background-color: $yellow;
+    // background-color: $yellow;
   }
 }
 
