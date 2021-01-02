@@ -152,7 +152,7 @@ $overlay-color: lighten(#FFFDFD, 10%);
   border: 2px solid $light-grey;
   padding: 4%;
   position: sticky;
-  top: 20px;
+  top: 17vh;
 
   .placeholder {
     width: 100%;
