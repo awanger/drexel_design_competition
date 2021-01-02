@@ -10,7 +10,7 @@
                 v-for="(cert,idx) in allPossibleCerts" :key="idx"
                 :class="{ disabled: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
 
-            <img src="./assets/images/Cyber.jpeg" alt="graphic goes here">
+            <img :src="getImgPath(cert.imgFile)" alt="image goes here">
             <div class="overlay">
               <div class="btn-container">
                 <div class="btn">View Details</div>
@@ -54,27 +54,14 @@ export default {
     return {
       allPossibleCerts: [
         { name:"HCI/UX", requiresCompsci: false, imgFile: 'ux.jpeg' },
-        { name: "Information Systems", requiresCompsci: false},
-        { name: "Comp Sci Foundations", requiresCompsci: false },
-        { name: "Technology Leadership", requiresCompsci: false },
-        { name: "Frontend Development", requiresCompsci: true },
-        { name: "Cybersecurity", requiresCompsci: true  },
-        { name: "Software Architecture", requiresCompsci: true },
-        { name: "Foundations of Data Science", requiresCompsci: true},
-        { name: "Artifical Intelligence", requiresCompsci: true},
-        { name:"HCI/UX", requiresCompsci: false },
-        { name: "Information Systems", requiresCompsci: false},
-        { name: "Comp Sci Foundations", requiresCompsci: false },
-        { name: "Technology Leadership", requiresCompsci: false },
-        { name: "Frontend Development", requiresCompsci: true },
-        { name: "Cybersecurity", requiresCompsci: true  },
-        { name: "Software Architecture", requiresCompsci: true },
-        { name: "Foundations of Data Science", requiresCompsci: true},
-        { name: "Artifical Intelligence", requiresCompsci: true},
-        { name: "Foundations of Data Science", requiresCompsci: true},
-        { name: "Artifical Intelligence", requiresCompsci: true},
-        { name: "Foundations of Data Science", requiresCompsci: true},
-
+        { name: "Information Systems", requiresCompsci: false, imgFile: 'FED.jpeg'},
+        { name: "Comp Sci Foundations", requiresCompsci: false, imgFile: 'CSF.jpeg' },
+        { name: "Technology Leadership", requiresCompsci: false, imgFile: 'TL.jpeg' },
+        { name: "Frontend Development", requiresCompsci: true, imgFile: 'FED.jpeg' },
+        { name: "Cybersecurity", requiresCompsci: true, imgFile: 'Cyber.jpeg'},
+        { name: "Software Architecture", requiresCompsci: true, imgFile: 'SA.jpeg'},
+        { name: "Foundations of Data Science", requiresCompsci: true, imgFile: "DS.jpeg"},
+        { name: "Artifical Intelligence", requiresCompsci: true, imgFile: 'psy.jpeg'},
       ],
       checkedCerts: [],
     }
@@ -82,6 +69,9 @@ export default {
   methods: {
     checkIfSelected: function(cert) {
       return this.checkedCerts.includes(cert);
+    },
+    getImgPath: function(imgFileName) {
+      return imgFileName ? require(`./assets/images/${imgFileName}`) : '';
     }
   },
   computed: {
@@ -100,6 +90,12 @@ $light-grey: #b7b7b5;
 $blue: #232d38;
 $yellow: #ffc600;
 $overlay-color: lighten(#FFFDFD, 10%);
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 #app {
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -191,7 +187,7 @@ $overlay-color: lighten(#FFFDFD, 10%);
 
   img {
     object-fit: cover;
-    width: 400px;
+    max-width: 300px;
   }
 
   .card-footer {
@@ -225,24 +221,23 @@ $overlay-color: lighten(#FFFDFD, 10%);
 }
 
 .btn-container {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   width: 100%;
-  height: 75%; // depends on the size of the 
+  height: 75%; // depends on the size of the
 
   .btn {
+    @include flex-center;
     padding: 0.35em 1.2em;
     border: 0.1em solid $blue;
     color:$blue;
     text-decoration:none;
     cursor: pointer;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
+    width: 75%;
     height: 50px;
-
   }
 }
 
