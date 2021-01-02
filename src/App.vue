@@ -8,6 +8,7 @@
           <div class="card"
                 v-for="(cert,idx) in allPossibleCerts" :key="idx"
                 :class="{ disabled: selectedThree && !checkIfSelected(cert.name), selected: checkIfSelected(cert.name) }">
+          
             <div class="overlay">
               <div class="btn-container">
                 <div class="btn">View Details</div>
@@ -25,7 +26,7 @@
         </div>
         <div class="window-sidebar">
           <div class="certificates-window">
-            <h4>My Plan</h4>
+            <h1 class="certificates-window-header">My Degree Plan</h1>
             <ol>
               <li class="placeholder">{{ checkedCerts[0] }}</li>
               <li class="placeholder">{{ checkedCerts[1] }}</li>
@@ -58,16 +59,17 @@ export default {
         { name: "Software Architecture", requiresCompsci: true },
         { name: "Foundations of Data Science", requiresCompsci: true},
         { name: "Artifical Intelligence", requiresCompsci: true},
-        // { name: "Example 6", requiresCompsci: true},
-        // { name: "Advanced Computer Science", requiresCompsci: true},
-        // { name: "Geology", requiresCompsci: false},
-        // { name: "Example 8", requiresCompsci: false },
-        // { name: "Psychology", requiresCompsci: false },
-        // { name: "Psychology of Darth Vader", requiresCompsci: false },
-        // { name: "Natural Language Processing", requiresCompsci: true },
-        // { name: "George W. Bush", requiresCompsci: true},
-        // { name: "Filmmaking", requiresCompsci: true},
-        // { name: "Music and Technology", requiresCompsci: true},
+        { name:"HCI/UX", requiresCompsci: false },
+        { name: "Information Systems", requiresCompsci: false},
+        { name: "Computer Science Foundations", requiresCompsci: false },
+        { name: "Technology Leadership", requiresCompsci: false },
+        { name: "Example 1", requiresCompsci: true},
+        { name: "Example 2", requiresCompsci: true},
+        { name: "Frontend Development", requiresCompsci: true },
+        { name: "Cybersecurity", requiresCompsci: true  },
+        { name: "Software Architecture", requiresCompsci: true },
+        { name: "Foundations of Data Science", requiresCompsci: true},
+        { name: "Artifical Intelligence", requiresCompsci: true},
       ],
       checkedCerts: []
     }
@@ -149,6 +151,8 @@ $overlay-color: lighten(#FFFDFD, 10%);
 .certificates-window {
   border: 2px solid $light-grey;
   padding: 4%;
+  position: sticky;
+  top: 20px;
 
   .placeholder {
     width: 100%;
