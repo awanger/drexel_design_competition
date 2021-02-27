@@ -62,6 +62,10 @@ export default {
         { name: "Software Architecture", requiresCompsci: true, imgFile: 'SA.jpeg'},
         { name: "Foundations of Data Science", requiresCompsci: true, imgFile: "DS.jpeg"},
         { name: "Artifical Intelligence", requiresCompsci: true, imgFile: 'psy.jpeg'},
+        { name: "Artifical Intelligence", requiresCompsci: true, imgFile: 'psy.jpeg'},
+        { name: "Artifical Intelligence", requiresCompsci: true, imgFile: 'psy.jpeg'},
+        { name: "Artifical Intelligence", requiresCompsci: true, imgFile: 'psy.jpeg'},
+        { name: "Artifical Intelligence", requiresCompsci: true, imgFile: 'psy.jpeg'},
       ],
       checkedCerts: [],
     }
